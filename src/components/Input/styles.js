@@ -18,9 +18,15 @@ export const Container = styled.div`
   > input {
     width: 100%;
     background-color: transparent;
-    height: 48px;
     color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+    
+    height: 48px;
     outline: none;
+
+    padding: 0 16px;
+
+    font-size: 16px;
+    
 
     ::placeholder {
       color:  ${({ theme }) => theme.COLORS.LIGHT_500};
@@ -30,7 +36,6 @@ export const Container = styled.div`
   }
   svg {
     color:  ${({ theme }) => theme.COLORS.LIGHT_500};
-    margin-left: 14px;
     }
   }
   

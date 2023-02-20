@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+
   * {
     margin: 0;
     padding: 0;
@@ -10,7 +11,7 @@ export default createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.COLORS.DARK_400};
     color:${({ theme }) => theme.COLORS.LIGHT_100};
-
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -18,10 +19,10 @@ export default createGlobalStyle`
     font-family: 'Poppins', serif;
   } 
   input, text-area {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Roboto', serif;
   } 
 
-  input {
+  input,button {
     border: none;
   }
 
@@ -37,4 +38,8 @@ export default createGlobalStyle`
   a:hover {
     filter: brightness(0.9)
   } 
+
+  label  {
+    font-family: 'Roboto', serif;
+  }
 `;
