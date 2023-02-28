@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 
-export function Tag() {
+export function Tag({ title }) {
   return (
-  <Container>
-    <span></span>
-  </Container>
-  )
+    <Container>
+      <span>{title}</span>
+    </Container>
+  );
 }
