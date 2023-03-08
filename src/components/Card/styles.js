@@ -7,8 +7,9 @@ export const Container = styled.div`
   gap: 12px;
 
   align-items: center;
-
+  justify-content: center;
   min-width: 210px;
+  height: 290px;
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
 
   padding: 24px;
@@ -25,6 +26,11 @@ export const Container = styled.div`
     > svg {
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
+  }
+  >button:nth-child(3) {
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
   }
   > img {
     border-radius: 50%;
@@ -52,7 +58,7 @@ export const Counter = styled.div`
 
   height: 32px;
 
-  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
   > button {
     background-color: transparent;
     align-items: center;
@@ -62,7 +68,8 @@ export const Counter = styled.div`
   }
 `;
 export const ButtonsWrapper = styled.div`
-  display: flex;
+  display: ${({admin}) => admin ? "none": "flex"};
+
   flex-direction: column;
   gap: 16px;
   width: 100%;

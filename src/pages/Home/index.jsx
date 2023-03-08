@@ -5,14 +5,14 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import HeadingImg from '../../assets/headingImg.png'
 import { useNavigate } from "react-router-dom";
-export function Home() {
+export function Home({admin = false}) {
   const navigate = useNavigate();
   function handleNavigate(id) {
     navigate(`/details/${id}`)
   }
   return (
     <Container>
-      <Header/>
+      <Header admin={admin}/>
       <Main>
         <Heading>
           <img src={HeadingImg}/>
@@ -23,11 +23,7 @@ export function Home() {
           </div>
         </Heading>
       <Carroussel>
-        <Card onHandleDetails={handleNavigate}/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
       </Carroussel>
       </Main>
       <Footer/>

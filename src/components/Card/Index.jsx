@@ -4,22 +4,21 @@ import { TextButton } from "../TextButton";
 import { Button } from "../Button";
 import { Minus, Plus, Heart, PencilSimple } from "phosphor-react";
 
-export function Card({ onHandleDetails }) {
-  const user = true;
+export function Card({ onHandleDetails, admin=true }) {
 
   return (
-    <Container>
+    <Container admin={admin}>
       <button>
-        {user ? (
-          <Heart size={24} />
-        ) : (
+        {admin ? (
           <PencilSimple size={24} />
+          ) : (
+          <Heart size={24} />
         )}
       </button>
       <img src={Salad} />
       <TextButton title="Salada ravanelho >" onClick={onHandleDetails} />
       <span>R$ 79,97</span>
-      <ButtonsWrapper>
+      <ButtonsWrapper admin={admin}>
         <Counter>
           <button>
             <Minus size={18} />
