@@ -5,7 +5,7 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import HeadingImg from '../../assets/headingImg.png'
 import { useNavigate } from "react-router-dom";
-export function Home({admin = false}) {
+export function Home({admin = true}) {
   const navigate = useNavigate();
   function handleNavigate(id) {
     navigate(`/details/${id}`)

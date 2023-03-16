@@ -3,9 +3,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   display:flex;
-  gap: 12px;
-
-  Align-items: center;
+  padding: 0 16px;
+  gap: 16px;
+  align-items: center;
 
   background-color:  ${({ theme }) => theme.COLORS.DARK_900};
   color:  ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -23,7 +23,6 @@ export const Container = styled.div`
     height: 48px;
     outline: none;
 
-    padding: 0 16px;
 
     font-size: 16px;
     
@@ -37,6 +36,4 @@ export const Container = styled.div`
   svg {
     color:  ${({ theme }) => theme.COLORS.LIGHT_500};
     }
-  }
-  
 `

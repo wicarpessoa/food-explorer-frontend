@@ -1,4 +1,11 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const sidebarAnimation =  keyframes`
+0% {display: none, translateX(-100%)}
+50% {display: grid, translateX(-100%)}
+100% {display: grid, translateX(0%)}
+`
+
 export const Container =styled.div`
 display: flex;
 flex-direction: column;
@@ -74,15 +81,30 @@ div:nth-child(2) {
 `
 
 export const Sidebar = styled.div`
+display:${({open}) => open ? "grid": "none"};
+grid-template-rows: 114px auto 77px;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
 z-index: 2;
-position:absolute;
+position:fixed;
 height: 100vh;
-width: 100%;
+width: 100%; 
 top: 0;
 left: 0;
-background-color:${({ theme }) => theme.COLORS.TOMATO_100};
+background-color:${({ theme }) => theme.COLORS.DARK_400};
+@keyframes sidebarAnimation {
+  from { transform:translateX(-100%)}
+  to { transform:translateX(0%)}
+  /* 100% {display: grid;transform: translateX(0%)} */
+}
+animation-name: sidebarAnimation;
+animation-duration: 500ms;
 `
+
 export const SidebarHeader = styled.div`
+grid-area: "header";
 display: flex;
 gap:16px;
 height: 114px;
@@ -106,4 +128,36 @@ padding:64px 24px 28px;
 }
 `
 export const SidebarContent = styled.div`
+grid-area: "content";
+padding: 36px 28px;
+display: flex;
+flex-direction: column;
+width: 100%;
+height: 100%;
+>div:first-child {
+  margin-bottom: 36px;
+}
+>div:nth-child(3) {
+  display: ${({admin}) => admin ? "flex": "none" };;
+}
+> div:nth-child(1n + 2) {
+  height: 54px;
+  width: 100%;
+  border-bottom: 1px solid #192227;
+  padding: 10px;
+  button {
+  height: 34px;
+  
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 140%;
+  
+  
+  
+  color: #E1E1E6;
+  }
+}
 `
+
