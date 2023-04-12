@@ -1,12 +1,23 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 114px auto 77px;
+  grid-template-columns:auto;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
   width: 100%;
-  
+  > div:nth-child(1) {
+    grid-area: header;
+  }
+  > div:nth-child(3) {
+    grid-area: footer;
+  }
 
   > main {
+    grid-area: content;
     display: flex;
     flex-direction: column;
     width: 100%;

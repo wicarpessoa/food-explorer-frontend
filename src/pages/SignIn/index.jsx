@@ -17,12 +17,12 @@ export function SingIn() {
         </div>
       <Form>
         <InputWrapper>
-          <label>Email</label>
-          <Input placeholder="email"/>
+          <label for="Email">Email</label>
+          <Input id="Email" type="email" placeholder="email"/>
         </InputWrapper>
         <InputWrapper>
-          <label>Senha</label>
-          <Input placeholder="******"/>
+          <label for="Password">Senha</label>
+          <Input id="Password" type="password" placeholder="******"/>
         </InputWrapper>
         <Button title='entrar'/>
         <Link to="/register">

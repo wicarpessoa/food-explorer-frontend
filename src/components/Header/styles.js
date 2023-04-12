@@ -89,7 +89,7 @@ grid-template-rows: 114px auto 77px;
     "footer";
 z-index: 2;
 position:fixed;
-height: 100vh;
+height: 100%;
 width: 100%; 
 top: 0;
 left: 0;
@@ -101,10 +101,14 @@ background-color:${({ theme }) => theme.COLORS.DARK_400};
 }
 animation-name: sidebarAnimation;
 animation-duration: 500ms;
+
+> div:nth-child(3) {
+  grid-area: footer;
+}
 `
 
 export const SidebarHeader = styled.div`
-grid-area: "header";
+grid-area: header;
 display: flex;
 gap:16px;
 height: 114px;
@@ -128,7 +132,7 @@ padding:64px 24px 28px;
 }
 `
 export const SidebarContent = styled.div`
-grid-area: "content";
+grid-area: content;
 padding: 36px 28px;
 display: flex;
 flex-direction: column;

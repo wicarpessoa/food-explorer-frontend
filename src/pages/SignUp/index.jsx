@@ -17,16 +17,16 @@ export function SingUp() {
         </div>
       <Form>
         <InputWrapper>
-          <label>Seu nome</label>
-          <Input type="text" placeholder="nome"/>
+          <label for="Name">Seu nome</label>
+          <Input id="Name" type="text" placeholder="nome"/>
         </InputWrapper>
         <InputWrapper>
-          <label>Email</label>
-          <Input type="email" placeholder="email"/>
+          <label for="Email">Email</label>
+          <Input id="Email" type="email" placeholder="email"/>
         </InputWrapper>
         <InputWrapper>
-          <label>Senha</label>
-          <Input type="password" placeholder="******"/>
+          <label for="Password">Senha</label>
+          <Input id="Password" type="password" placeholder="******"/>
         </InputWrapper>
         <Button title='entrar'/>
         <Link to="/">
