@@ -7,8 +7,8 @@ export const Container = styled.div`
   gap: 16px;
   align-items: center;
 
-  background-color:  ${({ theme }) => theme.COLORS.DARK_900};
-  color:  ${({ theme }) => theme.COLORS.LIGHT_100};
+  background-color:  ${({ theme, dark }) => dark ? theme.COLORS.DARK_900 : theme.COLORS.DARK_800};
+  color:  ${({ theme }) =>   theme.COLORS.LIGHT_100};
 
   border-radius: 8px;
   :focus-within {

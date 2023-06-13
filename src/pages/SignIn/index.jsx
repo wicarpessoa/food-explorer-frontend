@@ -16,6 +16,7 @@ export function SingIn() {
           <img alt="logo" src={Logo}/>
         </div>
       <Form>
+        <h2>Faça login</h2>
         <InputWrapper>
           <label for="Email">Email</label>
           <Input id="Email" type="email" placeholder="email"/>

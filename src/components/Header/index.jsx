@@ -1,10 +1,11 @@
 import {  HeaderContainer,Container,Sidebar, SidebarHeader, SidebarContent } from "./styles";
-import { List,Receipt, X,MagnifyingGlass } from 'phosphor-react'
+import { List,Receipt, X,MagnifyingGlass, SignOut } from 'phosphor-react'
 import Logo from '../../assets/logo.png'
 import { useState } from "react";
 import {Footer} from '../Footer'
 import {Input} from "../Input"
 import {TextButton} from "../TextButton"
+import { Button } from "../Button";
 export function Header({admin}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   function handleSideBarToggle() {
@@ -14,7 +15,7 @@ export function Header({admin}) {
  return( 
   <Container>
 
-  <HeaderContainer admin={admin}>
+  <HeaderContainer admin={false}>
     <button onClick={handleSideBarToggle}>
     <List size={24} />
     </button>
@@ -22,12 +23,17 @@ export function Header({admin}) {
     <img src={Logo} />
     <span>admin</span>
     </div>
+    <Input placeholder="wicar" icon={MagnifyingGlass}/>
+    <Button title="Pedidos (0)" icon={Receipt}/>
     <div>
       <button>
       <div><span>0</span></div>
       <Receipt size={24}/>
       </button>
     </div>
+    <button>
+      <SignOut size={24}/>
+    </button>
   </HeaderContainer>
   <Sidebar open={sidebarOpen}>
     <SidebarHeader>

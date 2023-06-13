@@ -9,6 +9,7 @@ import { Tag } from "../../components/Tag";
 import Salad from "../../assets/salad.png";
 import { Minus, Plus, Receipt  } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
+const tagsList = ["macarrao", "arroz", "peixe" ]
 
 export function Details({admin=false}) {
   const navigate = useNavigate();
@@ -25,14 +26,12 @@ export function Details({admin=false}) {
       <h2>Salada Ravanelho</h2>
       <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
       <TagsContainer>
-        <Tag title={"macarrao"} />
-        <Tag title={"agua"} />
-        <Tag title={"jabuticaba"} />
-        <Tag title={"arroz"} />
-        <Tag title={"arroz"} />
-        <Tag title={"arroz"} />
-        <Tag title={"arroz"} />
-        <Tag title={"arroz"} />
+        {tagsList.map((tag)=> {
+          return (
+            <Tag title={tag}/>
+          )
+        })}
+       
       </TagsContainer>
       <ButtonsWrapper admin={admin}>
         <Counter>

@@ -8,6 +8,7 @@ export const Container = styled.div`
     "header"
     "content"
     "footer";
+  min-height:100%;
   width: 100%;
   > div:nth-child(1) {
     grid-area: header;
@@ -20,6 +21,7 @@ export const Container = styled.div`
     grid-area: content;
     display: flex;
     flex-direction: column;
+    height: 100%;
     width: 100%;
     align-items: center;
     padding: 36px 56px 56px;

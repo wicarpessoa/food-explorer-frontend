@@ -16,6 +16,7 @@ export function SingUp() {
           <img alt="logo" src={Logo}/>
         </div>
       <Form>
+        <h2>Crie sua conta</h2>
         <InputWrapper>
           <label for="Name">Seu nome</label>
           <Input id="Name" type="text" placeholder="nome"/>

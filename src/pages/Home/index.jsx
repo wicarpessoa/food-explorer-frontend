@@ -5,6 +5,7 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import HeadingImg from '../../assets/headingImg.png'
 import { useNavigate } from "react-router-dom";
+import { CaretLeft } from "phosphor-react";
 export function Home({admin = true}) {
   const navigate = useNavigate();
   function handleNavigate(id) {
@@ -23,6 +24,21 @@ export function Home({admin = true}) {
           </div>
         </Heading>
       <Carroussel>
+        <div>
+          <button>
+          <CaretLeft size={28} />
+          </button>
+        </div>
+        <div>
+          <button>
+          <CaretLeft size={28} />
+          </button>
+        </div>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
       </Carroussel>
       </Main>
