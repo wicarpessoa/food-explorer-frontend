@@ -97,10 +97,10 @@ div:nth-child(2) {
   > div:nth-child(3){
   display: flex;
   }
-> button:nth-child(4),
-> button:nth-child(6) {
-  display: inline;
-}
+  > button:nth-child(4),
+  > button:nth-child(6) {
+    display: inline;
+  }
   > div:nth-child(5),
   > button:nth-child(1) 
    {
@@ -108,7 +108,7 @@ div:nth-child(2) {
   }
  
 
-  > button: nth-child(4) {
+  > button:nth-child(4) {
     min-width: 216px;
     max-width: 216px;
     height: 58px;

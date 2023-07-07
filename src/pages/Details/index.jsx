@@ -11,18 +11,20 @@ import { Minus, Plus, Receipt  } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 const tagsList = ["macarrao", "arroz", "peixe" ]
 
-export function Details({admin=false}) {
+export function Details({admin=true}) {
   const navigate = useNavigate();
   function handleGoBack() {
     navigate(-1)
   }
   return (
-    <Container>
+    <Container admin={admin}>
       <Header admin={admin}/>
       <main>
 
       <TextButton title="< Voltar" onClick={handleGoBack} />
+      <div>
       <img src={Salad} />
+      <div>
       <h2>Salada Ravanelho</h2>
       <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
       <TagsContainer>
@@ -36,17 +38,19 @@ export function Details({admin=false}) {
       <ButtonsWrapper admin={admin}>
         <Counter>
           <button>
-            <Minus size={20} />
+            <Minus size={24} />
           </button>
           <span>01</span>
 
           <button>
-            <Plus size={20} />
+            <Plus size={24} />
           </button>
         </Counter>
         <Button title="pedir ∙ R$ 25,00" icon={Receipt} />
       </ButtonsWrapper>
-      <Button title="Editar prato" />
+        <Button title="Editar prato" />
+      </div>
+      </div>
       </main>
       <Footer/>
     </Container>

@@ -42,11 +42,45 @@ export const Container = styled.div`
     height: 24px;
   }
 
+   > p {
+    display: none;
+
+  }
   > span {
     font-size: 16px;
     font-family: "Roboto", serif;
+    text-align: center;
     line-height: 16px;
     color: ${({ theme }) => theme.COLORS.CAKE_200};
+  }
+  @media (min-width: 800px) {
+    min-width: 304px;
+    height: 462px;
+    justify-content: flex-start;
+    gap: 15px;
+  > img {
+    border-radius: 50%;
+    width: 176px;
+    height: 176px;
+  }
+  > span {
+    font-size: 32px;
+    line-height: 160%;
+  }
+  >button:nth-child(3) {
+    font-size: 24px;
+    line-height: 140%;
+    font-weight: 500;
+  }
+  > p {
+    display: block;
+    font-size: 12px;
+    line-height: 160%;
+    font-weight: 400;
+    text-align: center;
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+
+  }
   }
 `;
 
@@ -73,8 +107,15 @@ export const ButtonsWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-
+  align-items: center;
   > button {
     height: 32px;
+  }
+  @media (min-width: 800px) {
+    flex-direction: row;
+    width: 208px;
+    > button {
+    height: 48px;
+  }
   }
 `;

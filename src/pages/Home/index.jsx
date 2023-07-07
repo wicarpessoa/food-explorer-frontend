@@ -1,4 +1,4 @@
-import { Container, Carroussel, Main, Heading } from "./styles";
+import { Container, Carroussel, Main, Heading, CarrousselContainer } from "./styles";
 
 import { Card } from "../../components/Card/Index";
 import { Footer } from "../../components/Footer";
@@ -10,6 +10,23 @@ export function Home({admin = true}) {
   const navigate = useNavigate();
   function handleNavigate(id) {
     navigate(`/details/${id}`)
+  }
+  function handleScrollRight (e){
+    let target = e.currentTarget;
+    let parent = target.parentElement;
+    let carroussel = parent.nextElementSibling;
+    
+    carroussel.scrollLeft -= 268
+    
+  }
+  function handleScrollLeft (e){
+    let target = e.currentTarget;
+    let parent = target.parentElement;
+    let nextSibling = parent.nextElementSibling;
+    let carroussel = nextSibling.nextElementSibling;
+
+    carroussel.scrollLeft += 268
+    
   }
   return (
     <Container>
@@ -23,24 +40,27 @@ export function Home({admin = true}) {
     
           </div>
         </Heading>
+        <CarrousselContainer>
+          <h2>Refeições</h2>
+        <div>
+          <button onClick={e=>handleScrollLeft(e)}>
+          <CaretLeft size={28} />
+          </button>
+        </div>
+        <div>
+          <button onClick={e => handleScrollRight(e)}>
+          <CaretLeft size={28} />
+          </button>
+        </div>
       <Carroussel>
-        <div>
-          <button>
-          <CaretLeft size={28} />
-          </button>
-        </div>
-        <div>
-          <button>
-          <CaretLeft size={28} />
-          </button>
-        </div>
-        <Card admin={admin} onHandleDetails={handleNavigate}/>
+        <Card admin={false} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
       </Carroussel>
+        </CarrousselContainer>
       </Main>
       <Footer/>
     </Container>

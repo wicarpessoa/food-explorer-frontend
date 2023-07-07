@@ -87,27 +87,32 @@ padding: 90px 100px 90px 0;
 }
 }
 }
-}
-`
 
-export const Carroussel = styled.div`
+`
+export const CarrousselContainer = styled.div`
 display: flex;
-position: relative;
-gap: 16px;
-overflow-x: scroll;
+flex-direction: column;
 width: 100%;
-padding-left: 24px;
-::-webkit-scrollbar {
-  display:none;
-}
+position: relative;
+> div:nth-child(2),
+  > div:nth-child(3) {
+    display: none;
+  }
+
 @media (min-width: 800px) {
-  > div:nth-child(1),
-  > div:nth-child(2){
+  > h2 {
+    font-size: 32px;
+    line-height: 140%;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  > div:nth-child(2),
+  > div:nth-child(3){
     display:flex;
     align-items: center;
-    
     position: absolute;
-    height: 100%;
+    bottom:0;
+    height: 462px;
     width: 278px;
     z-index:1;
     > button {
@@ -117,10 +122,10 @@ padding-left: 24px;
       }
     }
   }
-  > div:nth-child(1) {
+  > div:nth-child(2) {
     background: linear-gradient(-90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);
   }
-  > div:nth-child(2) {
+  > div:nth-child(3) {
     background: linear-gradient(90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);
     right: 0px;
     justify-content: flex-end;
@@ -130,5 +135,21 @@ padding-left: 24px;
       }
     }
   }
+}
+`
+export const Carroussel = styled.div`
+display: flex;
+gap: 16px;
+overflow-x: scroll;
+width: 100%;
+padding-left: 24px;
+scroll-behavior: smooth;
+::-webkit-scrollbar {
+  display:none;
+}
+@media (min-width: 800px) {
+ padding: 0 300px;
+position: relative;
+
 }
 `

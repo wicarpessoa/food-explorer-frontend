@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   gap: 8px;
   padding:8px 16px;
-  height: auto;
+  height: 32px;
   flex-wrap: wrap;
   border-radius: 8px;
 
@@ -18,8 +18,9 @@ export const Container = styled.div`
 
   > input {
     max-width: 70px;
-
+    height:16px;
     font-size: 16px;
+    line-height:100%;
     font-family: "Roboto", sans-serif;
 
     background-color: transparent;
@@ -35,9 +36,14 @@ export const Container = styled.div`
     }
   }
   > button {
+    height: 16px;
+    width: 16px;
     color: ${({ theme, isNew }) => isNew ? theme.COLORS.LIGHT_500 :theme.COLORS.LIGHT_100};
-    size: 24px;
+    size: 8px;
     border: none;
     background-color:transparent ;
+    > svg {
+      font-size:16px;
+    }
   }
 `;
