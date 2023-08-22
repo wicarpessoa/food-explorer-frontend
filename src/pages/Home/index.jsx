@@ -53,7 +53,7 @@ export function Home({admin = true}) {
           </button>
         </div>
       <Carroussel>
-        <Card admin={false} onHandleDetails={handleNavigate}/>
+        <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>
         <Card admin={admin} onHandleDetails={handleNavigate}/>

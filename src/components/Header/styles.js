@@ -22,7 +22,7 @@ justify-content: space-between;
 background-color:  ${({ theme }) => theme.COLORS.DARK_700};
 
 padding:64px 24px 28px;
-> button: nth-child(4),
+> div:nth-child(4),
 > div:nth-child(3),
 > button:nth-child(6) {
 display: none;
@@ -93,11 +93,11 @@ div:nth-child(2) {
   padding: 0 clamp(1rem, 7vw, 7rem);
   gap: 32px;
 
-  
+  > div:nth-child(4),
   > div:nth-child(3){
   display: flex;
   }
-  > button:nth-child(4),
+  
   > button:nth-child(6) {
     display: inline;
   }
@@ -108,13 +108,26 @@ div:nth-child(2) {
   }
  
 
-  > button:nth-child(4) {
-    min-width: 216px;
-    max-width: 216px;
-    height: 58px;
+  > div:nth-child(4) {
     display: flex;
     align-items: center;
-    
+    button {
+      height: 58px;
+      min-width: 216px;
+      padding: 12px 46.5px;
+      > svg {
+        width: 32px;
+        height: 32px;
+        margin: 0;
+      }
+    }
+    button:first-child {
+      display: ${({admin}) => admin ? "none": "inline"};
+    }
+    button:nth-child(2) {
+      height: 48px;
+      display: ${({admin}) => admin ? "inline": "none"};
+    }
   }
 }
 `

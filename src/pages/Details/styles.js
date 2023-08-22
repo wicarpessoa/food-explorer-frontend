@@ -92,7 +92,7 @@ export const Container = styled.div`
           text-align: left;
           }
           > button:nth-child(5) {
-          display: ${({admin}) => admin ? "inline" : "none"};
+          display: ${({ admin }) => admin ? "inline" : "none"};
           padding: 0 24px;
           width: fit-content;
           }
@@ -136,7 +136,7 @@ export const Counter = styled.div`
     }
 `;
 export const ButtonsWrapper = styled.div`
-  display: ${({admin}) => admin ? "none" : "flex"};
+  display: ${({ admin }) => admin ? "none" : "flex"};
   flex-direction: row;
   align-items: center;
 
