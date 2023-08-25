@@ -94,10 +94,21 @@ display: flex;
 flex-direction: column;
 width: 100%;
 position: relative;
+padding-left: 24px;
+margin-bottom: 24px;
+> h2 {
+  margin-bottom: 24px;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: left;
+
+  }
 > div:nth-child(2),
-  > div:nth-child(3) 
-  > div:nth-child(5) 
-  > div:nth-child(4) {
+  > div:nth-child(3), 
+  > div:nth-child(4), 
+  > div:nth-child(5) {
     display: none;
   }
 
@@ -166,7 +177,6 @@ gap: 16px;
 overflow: hidden;
 overflow-x: scroll;
 width: 100%;
-padding-left: 24px;
 scroll-behavior: smooth;
 ::-webkit-scrollbar {
   display:none;
