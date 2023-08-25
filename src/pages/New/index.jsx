@@ -40,9 +40,6 @@ export function New() {
     }
 
     async function handleNewFood() {
-        // try {
-        console.log("xxx")
-
         api.post("/foods", {
             title,
             category_id: selectedCategory,
@@ -58,7 +55,7 @@ export function New() {
             const food_id = foodResponse.data[0]
             return api.patch(`foods/avatar/${food_id}`, fileUploadForm);
           }).catch(error => {
-            console.error("nao foi possivel criar o prato!", error);
+            alert(error);
           });
         }
     const handleSelectChange = (event) => {

@@ -95,11 +95,15 @@ flex-direction: column;
 width: 100%;
 position: relative;
 > div:nth-child(2),
-  > div:nth-child(3) {
+  > div:nth-child(3) 
+  > div:nth-child(5) 
+  > div:nth-child(4) {
     display: none;
   }
 
 @media (min-width: 800px) {
+  
+  margin-bottom: 48px;
   > h2 {
     font-size: 32px;
     line-height: 140%;
@@ -115,20 +119,39 @@ position: relative;
     height: 462px;
     width: 278px;
     z-index:1;
-    > button {
-      background-color: transparent;
-      > svg {
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      }
-    }
+    pointer-events: none;
+    
   }
+
   > div:nth-child(2) {
     background: linear-gradient(-90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);
   }
+
   > div:nth-child(3) {
     background: linear-gradient(90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);
     right: 0px;
     justify-content: flex-end;
+    
+  }
+
+  > div:nth-child(4),
+  > div:nth-child(5) {
+    z-index: 2;
+    position: absolute;
+    > button {
+    background-color: transparent;
+    > svg {
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+  }
+  }
+  > div:nth-child(4) {
+    bottom: 230px;
+    left: 16px;
+  }
+  > div:nth-child(5) {
+    right: 16px;
+    bottom: 230px;
     > button {
       > svg {
         transform: rotate(180deg);
@@ -140,6 +163,7 @@ position: relative;
 export const Carroussel = styled.div`
 display: flex;
 gap: 16px;
+overflow: hidden;
 overflow-x: scroll;
 width: 100%;
 padding-left: 24px;
@@ -148,8 +172,7 @@ scroll-behavior: smooth;
   display:none;
 }
 @media (min-width: 800px) {
- padding: 0 300px;
 position: relative;
-
+padding-left: 0px;
 }
 `
