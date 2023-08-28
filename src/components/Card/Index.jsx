@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { Container, Counter, ButtonsWrapper } from "./styles";
 import { TextButton } from "../TextButton";
 import { Button } from "../Button";
+
 import { Minus, Plus, Heart, PencilSimple , ForkKnife  } from "phosphor-react";
+
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export function Card({ onHandleDetails, admin=false, description, img_url, title, price }) {
   const [imgFile, setImgFile] = useState(null)
+
+
+  
   useEffect(()=> {
     async function fetchImg() {
       if (img_url) {
@@ -18,13 +24,15 @@ export function Card({ onHandleDetails, admin=false, description, img_url, title
   },[img_url])
   return (
     <Container admin={admin}>
-      <button>
         {admin ? (
-          <PencilSimple size={24} />
+          <button onClick={onHandleDetails}>
+            <PencilSimple size={24} />
+          </button>
           ) : (
-          <Heart size={24} />
+            <button>
+              <Heart size={24} />
+            </button>
         )}
-      </button>
       {img_url ? <img src={imgFile} /> : <ForkKnife size={120}/>}
       <TextButton title={`${title} >`} onClick={onHandleDetails} />
       <p>{description}</p>

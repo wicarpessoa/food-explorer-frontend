@@ -23,6 +23,10 @@ export function Home() {
     navigate(`/details/${id}`)
   }
 
+  function handleNavigatoToEdit(id) {
+    navigate(`/details/${id}`)
+  }
+  
   function handleScrollRight (e){
     let target = e.currentTarget;
     let parent = target.parentElement;
@@ -94,7 +98,7 @@ export function Home() {
                 <Card 
                     key={String(i)} 
                     admin={isAdmin} 
-                    onHandleDetails={handleNavigate} 
+                    onHandleDetails={()=>handleNavigate(food.id)} 
                     description={food.description} 
                     title={food.title} 
                     price={`R$ ${formattedPrice}`} 

@@ -27,6 +27,18 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
     }
   }
+  > button:nth-child(2) {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+
+    background-color: transparent;
+    border: none;
+
+    > svg {
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
+  }
   >button:nth-child(3) {
     font-size: 14px;
     line-height: 14px;

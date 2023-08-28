@@ -54,9 +54,6 @@ export function New() {
                 price: price * 100,
               })
               const food_id = foodResponse.data[0]
-              console.log( food_id);
-              console.log( food_id);
-              console.log( food_id);
               
               const fileUploadForm = new FormData();
               fileUploadForm.append("img", img);
@@ -111,7 +108,7 @@ export function New() {
                         <InputWrapper>
                             <label >Categoria</label>
                             <select onChange={handleSelectChange}>
-                                <option value="" disabled selected>Refeição</option>
+                                <option value="" disabled selected>Selecione a categoria</option>
                                 {categories.map((category) => {
                                     return <option key={String(category.id)} value={category.id} >{category.name}</option>
                                 })}

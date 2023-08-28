@@ -9,13 +9,16 @@ import { UploadSimple } from "phosphor-react";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export function Edit() {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
-    
+
+    const [data, setData] = useState(null)
+
     const [img, setImg] = useState(null)
 
     const [categories, setCategories] = useState([])
@@ -24,7 +27,9 @@ export function Edit() {
     const [ingredients, setIngredients] = useState([])
     const [newIngredient, setNewIngredient] = useState([])
 
-    const {isAdmin} = useAuth()
+    const navigate = useNavigate();
+
+    const params = useParams();
 
     function handleAddIngredient() {
         setIngredients(prevState=> [...prevState, newIngredient])
@@ -37,48 +42,80 @@ export function Edit() {
 
     function handleChangeAvatar(event) {
         const file = event.target.files[0];
-        setImg(file);
-        
+        setImg(file); 
     }
 
-    async function handleNewFood() {
-        api.post("/foods", {
-            title,
-            category_id: selectedCategory,
-            description,
-            ingredients,
-            price: price * 100,
-          })
-          .then(foodResponse => {
-            console.log("Food created:", foodResponse.data);
-        
-            const fileUploadForm = new FormData();
-            fileUploadForm.append("img", img);
-            const food_id = foodResponse.data[0]
-            return api.patch(`foods/avatar/${food_id}`, fileUploadForm);
-          }).catch(error => {
-            alert(error);
-          });
-        }
     const handleSelectChange = (event) => {
         setSelectedCategory(event.target.value);
       };
 
-    useEffect( () => {
+    function handleGoBack() {
+        navigate(-1)
+    }
+
+    useEffect(()=> {
+        async function fetchFood() {
+          const response = await api.get(`/foods/${params.id}`)
+
+          const img_url = response.data.img_url
+
+          const fileResponse = await api.get(`/files/${img_url}`, {
+            responseType: 'arraybuffer'
+          }) 
+          //receving img and transforming
+          const imgData = new Uint8Array(fileResponse.data )
+          const blob = new Blob([imgData], { type: 'image/png' });
+          const fileImg = new File([blob], img_url, { type: 'image/png' });
+          setImg(fileImg)
+          console.log(response.data.price)
+          setTitle(response.data.title)
+          setDescription(response.data.description)
+          setPrice(Number(response.data.price)/100)
+          setSelectedCategory(response.data.category_id)
+
+          setIngredients([])
+          response.data.ingredients.map(ingredient => {
+            setIngredients(prevState=> [...prevState, ingredient.name])
+          })
+        }
+        fetchFood()
+      }, [])
+
+      useEffect( () => {
         async function fetchCategories(){
-          const response = await api.get("/categories")
+          const response =  await api.get("/categories")
           setCategories(response.data)  
         }
         fetchCategories()
-    }, [])
+      }, [])
 
+    async function handleEditFood(event) {
+        event.preventDefault()
+        try {
+            const fileUploadForm = new FormData();
+            fileUploadForm.append("img", img);
+            await api.patch(`foods/avatar/${params.id}`, fileUploadForm);
+            await api.put(`/foods/${params.id}`, {
+                title,
+                category_id: selectedCategory,
+                description,
+                ingredients,
+                price: price*100,
+              })
+                alert("food updated!");
+                navigate(-1);
+        } catch(e) {
+            alert(e)
+            console.log(e)
+        }
+        }
     return (
         <Container>
             <Header />
             <main>
                 <div>
-                <TextButton title='< voltar' />
-                <h2>Novo prato</h2>
+                <TextButton title='< voltar' onClick={handleGoBack} />
+                <h2>Editar prato</h2>
 
                 </div>
                 <Form>
@@ -89,18 +126,18 @@ export function Edit() {
                                 <label htmlFor="img">
                                     <UploadSimple size={24} />
                                     <span>{img ? img.name : "Selecione a imagem" } </span>
-                                    <input type="file" id="img" onChange={handleChangeAvatar} />
+                                    <input type="file" id="img"  onChange={handleChangeAvatar} />
                                 </label>
                             </InputFile>
                         </InputWrapper>
                         <InputWrapper>
                             <label >Nome</label>
-                            <Input dark={false} placeholder="Ex: Salada Ceaser" onChange={e => setTitle(e.target.value)} />
+                            <Input dark={false} value={title} placeholder="Ex: Salada Ceaser" onChange={e => setTitle(e.target.value)} />
                         </InputWrapper>
                         <InputWrapper>
                             <label >Categoria</label>
-                            <select onChange={handleSelectChange}>
-                                <option value="" disabled selected>Refeição</option>
+                            <select value={selectedCategory} onChange={handleSelectChange}>
+                                <option value="" disabled selected>Selecione a categoria</option>
                                 {categories.map((category) => {
                                     return <option key={String(category.id)} value={category.id} >{category.name}</option>
                                 })}
@@ -121,7 +158,7 @@ export function Edit() {
                         </InputWrapper>
                         <InputWrapper>
                             <label >Preço</label>
-                            <Input dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
+                            <Input value={price} dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
                         </InputWrapper>
 
                     </div>
@@ -129,10 +166,10 @@ export function Edit() {
 
                     <InputWrapper>
                         <label >Descrição</label>
-                        <textarea placeholder="Fale brevePmente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
+                        <textarea value={description} placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
                     </InputWrapper>
                     <ButtonsWrapper>
-                        <button onClick={handleNewFood}>Salvar alterações</button>
+                        <button onClick={e => handleEditFood(e)}>Salvar alterações</button>
                     </ButtonsWrapper>
                     </div>
 

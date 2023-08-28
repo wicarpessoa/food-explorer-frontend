@@ -6,7 +6,7 @@ const sidebarAnimation =  keyframes`
 100% {display: grid, translateX(0%)}
 `
 
-export const Container =styled.div`
+export const Container = styled.div`
 display: flex;
 flex-direction: column;
 width: 100%;
@@ -18,7 +18,7 @@ display: flex;
 
 height: 114px;
 width: 100%;
-justify-content: space-between;
+justify-content: flex-start;
 background-color:  ${({ theme }) => theme.COLORS.DARK_700};
 
 padding:64px 24px 28px;
@@ -40,15 +40,17 @@ div:nth-child(2) {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center ;
   justify-self: center;
   gap: 8px;
+  margin-left: ${({admin}) => admin ? "clamp(3vw,160px, 20vw);" : 0};
   > img {
     object-fit: cover;
     height: 24px;
   }
   > span{ 
     color:  ${({ theme }) => theme.COLORS.CAKE_200};
-    display: ${({admin}) => admin ? "inline" : "none"};;
+    display: ${({admin}) => admin ? "inline" : "none"};
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -90,11 +92,15 @@ div:nth-child(2) {
 @media (min-width: 800px) {
   height: 104px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 clamp(1rem, 7vw, 7rem);
   gap: 32px;
+  >div:nth-child(2){
+    margin:0
+  }
   > div:nth-child(3) {
-    padding: 0 100px;
+    max-width: clamp(15vw,700px,100vw);
+    padding: 0 0px 0 clamp(1vw,100px, 4vw);
   }
   > div:nth-child(4),
   > div:nth-child(3){
