@@ -3,11 +3,12 @@ import styled from 'styled-components'
 export const Container = styled.button`
   width: 100%;
   display:flex;
+  flex-direction: row;
   gap: 12px;
 
   height: 48px;
 
-  Align-items: center;
+  align-items: center !important;
   justify-content: center;
 
   background-color:  ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -24,6 +25,5 @@ export const Container = styled.button`
     color:  ${({ theme }) => theme.COLORS.LIGHT_500};
     margin-left: 14px;
     }
-  
-  
+ 
 `

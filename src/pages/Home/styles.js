@@ -103,7 +103,6 @@ margin-bottom: 24px;
   font-weight: 500;
   line-height: 25px;
   text-align: left;
-
   }
 > div:nth-child(2),
   > div:nth-child(3), 
@@ -147,6 +146,7 @@ margin-bottom: 24px;
 
   > div:nth-child(4),
   > div:nth-child(5) {
+    display:flex;
     z-index: 2;
     position: absolute;
     > button {

@@ -8,6 +8,7 @@ import { Container, InputFile, Form, TagsWrapper, ButtonsWrapper, InputWrapper }
 import { UploadSimple } from "phosphor-react";
 
 import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 
 export function Edit() {
@@ -23,6 +24,7 @@ export function Edit() {
     const [ingredients, setIngredients] = useState([])
     const [newIngredient, setNewIngredient] = useState([])
 
+    const {isAdmin} = useAuth()
 
     function handleAddIngredient() {
         setIngredients(prevState=> [...prevState, newIngredient])

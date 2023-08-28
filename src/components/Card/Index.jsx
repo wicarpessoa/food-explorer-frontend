@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import { Container, Counter, ButtonsWrapper } from "./styles";
-import Salad from "../../assets/salad.png";
 import { TextButton } from "../TextButton";
 import { Button } from "../Button";
-import { Minus, Plus, Heart, PencilSimple } from "phosphor-react";
+import { Minus, Plus, Heart, PencilSimple , ForkKnife  } from "phosphor-react";
+import { api } from "../../services/api";
 
 export function Card({ onHandleDetails, admin=false, description, img_url, title, price }) {
-
+  const [imgFile, setImgFile] = useState(null)
+  useEffect(()=> {
+    async function fetchImg() {
+      if (img_url) {
+        const img = `${api.defaults.baseURL}/files/${img_url}` 
+        setImgFile(img)
+      }
+    }
+    fetchImg()
+  },[img_url])
   return (
     <Container admin={admin}>
       <button>
@@ -15,7 +25,7 @@ export function Card({ onHandleDetails, admin=false, description, img_url, title
           <Heart size={24} />
         )}
       </button>
-      <img src={img_url} />
+      {img_url ? <img src={imgFile} /> : <ForkKnife size={120}/>}
       <TextButton title={`${title} >`} onClick={onHandleDetails} />
       <p>{description}</p>
       <span>{price}</span>

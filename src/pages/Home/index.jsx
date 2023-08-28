@@ -10,10 +10,14 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useRef } from "react";
 import { useLayoutEffect } from "react";
-export function Home({admin = false}) {
+import { useAuth } from "../../hooks/auth";
+
+export function Home() {
   const navigate = useNavigate();
-  
+  const [ search, setSearch] = useState("")
   const [foodsByCategory, setFoodsByCategory] = useState([])
+
+  const {isAdmin} = useAuth();
 
   function handleNavigate(id) {
     navigate(`/details/${id}`)
@@ -47,16 +51,18 @@ export function Home({admin = false}) {
 
   useEffect(()=> {
     async function fetchFoods() {
-      const response = await api.get("/foods")
+      const response = await api.get(`/foods?title=${search}`)
       setFoodsByCategory(response.data)
+      console.log(response.data)
+
     }
     fetchFoods()
-  }, [])
+  }, [search])
   return (
     <Container>
-      <Header admin={admin}/>
+      <Header admin={isAdmin} onInputChange={ (e) => setSearch(e.target.value) }/>
         <Main>
-          <Heading>
+          <Heading >
             <img src={HeadingImg}/>
             <div>
             <h2>Sabores inigualáveis</h2>
@@ -87,7 +93,7 @@ export function Home({admin = false}) {
               return (
                 <Card 
                     key={String(i)} 
-                    admin={admin} 
+                    admin={isAdmin} 
                     onHandleDetails={handleNavigate} 
                     description={food.description} 
                     title={food.title} 

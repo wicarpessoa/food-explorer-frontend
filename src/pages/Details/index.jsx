@@ -9,16 +9,18 @@ import { Tag } from "../../components/Tag";
 import Salad from "../../assets/salad.png";
 import { Minus, Plus, Receipt } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 const tagsList = ["macarrao", "arroz", "peixe"]
 
-export function Details({ admin = true }) {
+export function Details() {
   const navigate = useNavigate();
+  const {isAdmin} = useAuth()
   function handleGoBack() {
     navigate(-1)
   }
   return (
-    <Container admin={admin}>
-      <Header admin={admin} />
+    <Container admin={isAdmin}>
+      <Header admin={isAdmin} />
       <main>
 
         <TextButton title="< Voltar" onClick={handleGoBack} />
@@ -35,7 +37,7 @@ export function Details({ admin = true }) {
               })}
 
             </TagsContainer>
-            <ButtonsWrapper admin={admin}>
+            <ButtonsWrapper admin={isAdmin}>
               <Counter>
                 <button>
                   <Minus size={24} />

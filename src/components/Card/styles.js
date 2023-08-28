@@ -54,9 +54,10 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
   @media (min-width: 800px) {
+    width: 304px;
     min-width: 304px;
     height: 462px;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 15px;
   > img {
     border-radius: 50%;
@@ -79,7 +80,7 @@ export const Container = styled.div`
     font-weight: 400;
     text-align: center;
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
-
+    white-space: pre-wrap;
   }
   }
 `;

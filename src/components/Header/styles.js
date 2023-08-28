@@ -40,6 +40,7 @@ div:nth-child(2) {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self: center;
   gap: 8px;
   > img {
     object-fit: cover;
@@ -89,10 +90,12 @@ div:nth-child(2) {
 @media (min-width: 800px) {
   height: 104px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 clamp(1rem, 7vw, 7rem);
   gap: 32px;
-
+  > div:nth-child(3) {
+    padding: 0 100px;
+  }
   > div:nth-child(4),
   > div:nth-child(3){
   display: flex;
@@ -110,23 +113,24 @@ div:nth-child(2) {
 
   > div:nth-child(4) {
     display: flex;
-    align-items: center;
+    align-items: center !important;
     button {
       height: 58px;
       min-width: 216px;
-      padding: 12px 46.5px;
+      padding: 0px 0px;
       > svg {
         width: 32px;
         height: 32px;
         margin: 0;
+        color:"white";
       }
     }
-    button:first-child {
-      display: ${({admin}) => admin ? "none": "inline"};
+    > button:first-child {
+      display: ${({admin}) => admin ? "none": "flex"};
     }
-    button:nth-child(2) {
+    > button:nth-child(2) {
       height: 48px;
-      display: ${({admin}) => admin ? "inline": "none"};
+      display: ${({admin}) => admin ? "flex": "none"};
     }
   }
 }

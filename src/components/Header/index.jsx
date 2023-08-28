@@ -11,7 +11,7 @@ import {Footer} from '../Footer'
 import {Input} from "../Input"
 import {TextButton} from "../TextButton"
 import { Button } from "../Button";
-export function Header({admin}) {
+export function Header({admin, onInputChange}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const navigate = useNavigate(); 
@@ -37,13 +37,10 @@ export function Header({admin}) {
     <List size={24} />
     </button>
     <div>
-
-
-      
     <img src={Logo} />
     <span>admin</span>
     </div>
-    <Input placeholder="wicar" icon={MagnifyingGlass}/>
+    <Input onChange={onInputChange} placeholder="Busque por pratos ou ingredientes" icon={MagnifyingGlass}/>
     <div>
     <Button title="Pedidos(0)" icon={Receipt}/>
     <Button title="Novo Prato" onClick={handleNavigate} />
@@ -66,8 +63,8 @@ export function Header({admin}) {
       </button>
       <h3>Menu</h3>
     </SidebarHeader>
-    <SidebarContent admin={admin}>
-      <Input placeholder="Busque por pratos ou ingredientes" icon={MagnifyingGlass}/>
+    <SidebarContent admin={isAdmin}>
+      <Input onChange={onInputChange} placeholder="Busque por pratos ou ingredientes" icon={MagnifyingGlass}/>
       <div>
         <TextButton title="sair" onClick={handleSignOut} />
       </div>

@@ -8,6 +8,8 @@ import { Container, InputFile, Form, TagsWrapper, ButtonsWrapper, InputWrapper }
 import { UploadSimple } from "phosphor-react";
 
 import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 
 export function New() {
@@ -23,6 +25,8 @@ export function New() {
     const [ingredients, setIngredients] = useState([])
     const [newIngredient, setNewIngredient] = useState([])
 
+    const {isAdmin} = useAuth();
+    const navigate = useNavigate();
 
     function handleAddIngredient() {
         setIngredients(prevState=> [...prevState, newIngredient])
@@ -40,27 +44,36 @@ export function New() {
     }
 
     async function handleNewFood() {
-        api.post("/foods", {
-            title,
-            category_id: selectedCategory,
-            description,
-            ingredients,
-            price: price * 100,
-          })
-          .then(foodResponse => {
-            console.log("Food created:", foodResponse.data);
-        
-            const fileUploadForm = new FormData();
-            fileUploadForm.append("img", img);
-            const food_id = foodResponse.data[0]
-            return api.patch(`foods/avatar/${food_id}`, fileUploadForm);
-          }).catch(error => {
-            alert(error);
-          });
+        try {
+
+           const foodResponse =  await api.post("/foods", {
+                title,
+                category_id: selectedCategory,
+                description,
+                ingredients,
+                price: price * 100,
+              })
+              const food_id = foodResponse.data[0]
+              console.log( food_id);
+              console.log( food_id);
+              console.log( food_id);
+              
+              const fileUploadForm = new FormData();
+              fileUploadForm.append("img", img);
+              await api.patch(`foods/avatar/${food_id}`, fileUploadForm);
+              alert("Food created!");
+              navigate(-1);
+        } catch(e) {
+            alert(e)
+        }
         }
     const handleSelectChange = (event) => {
         setSelectedCategory(event.target.value);
       };
+
+    function handleGoBack() {
+        navigate(-1)
+    }
 
     useEffect( () => {
         async function fetchCategories(){
@@ -75,7 +88,7 @@ export function New() {
             <Header />
             <main>
                 <div>
-                <TextButton title='< voltar' />
+                <TextButton title='< voltar' onClick={handleGoBack} />
                 <h2>Novo prato</h2>
 
                 </div>
@@ -127,7 +140,7 @@ export function New() {
 
                     <InputWrapper>
                         <label >Descrição</label>
-                        <textarea placeholder="Fale brevePmente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
+                        <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
                     </InputWrapper>
                     <ButtonsWrapper>
                         <button onClick={handleNewFood}>Salvar alterações</button>
