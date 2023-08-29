@@ -43,7 +43,8 @@ export function New() {
         
     }
 
-    async function handleNewFood() {
+    async function handleNewFood(e) {
+        e.preventDefault()
         try {
 
            const foodResponse =  await api.post("/foods", {
@@ -140,7 +141,7 @@ export function New() {
                         <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
                     </InputWrapper>
                     <ButtonsWrapper>
-                        <button onClick={handleNewFood}>Salvar alterações</button>
+                        <button onClick={e => handleNewFood(e)}>Salvar alterações</button>
                     </ButtonsWrapper>
                     </div>
 

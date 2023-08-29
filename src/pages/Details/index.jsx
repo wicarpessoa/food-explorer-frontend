@@ -36,7 +36,7 @@ export function Details() {
       const img_url = response.data.img_url
       const img = `${api.defaults.baseURL}/files/${img_url}` 
       setImgFile(img)
-    }
+    } 
     fetchFood()
   }, [img])
 
@@ -45,9 +45,10 @@ export function Details() {
   return (
     <Container admin={isAdmin}>
       <Header admin={isAdmin} />
-     {data && <main>
-
-        <TextButton title="< Voltar" onClick={handleGoBack} />
+      <main>
+     {data && 
+     <>
+     <TextButton title="< Voltar" onClick={handleGoBack} />
         <div>
           <img src={img} />
           <div>
@@ -77,7 +78,9 @@ export function Details() {
             <Button title="Editar prato" onClick={()=> handleNavigateToEdit(params.id)} />
           </div>
         </div>
-      </main>}
+        </>
+      }
+      </main>
       <Footer />
     </Container>
   );

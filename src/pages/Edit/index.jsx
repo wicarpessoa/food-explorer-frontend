@@ -48,17 +48,47 @@ export function Edit() {
     const handleSelectChange = (event) => {
         setSelectedCategory(event.target.value);
       };
+      
+      function handleGoBack() {
+          navigate(-1)
+        }
 
-    function handleGoBack() {
-        navigate(-1)
-    }
-
+      async function handleEditFood(event) {
+            event.preventDefault()
+            try {
+                const fileUploadForm = new FormData();
+                fileUploadForm.append("img", img);
+                await api.patch(`foods/avatar/${params.id}`, fileUploadForm);
+                await api.put(`/foods/${params.id}`, {
+                    title,
+                    category_id: selectedCategory,
+                    description,
+                    ingredients,
+                    price: price*100,
+                  })
+                    alert("food updated!");
+                    navigate(-1);
+            } catch(e) {
+                alert(e)
+                console.log(e)
+            }
+            }
+      async function handleDeleteFood(event) {
+        event.preventDefault()
+        try {
+            await api.delete(`/foods/${params.id}`)
+            alert("Prato excluido com sucesso!")
+            navigate("/")
+        } catch(e) {
+            alert("Não foi possível excluir o prato!")
+        }
+      }  
     useEffect(()=> {
         async function fetchFood() {
           const response = await api.get(`/foods/${params.id}`)
-
+          
           const img_url = response.data.img_url
-
+          
           const fileResponse = await api.get(`/files/${img_url}`, {
             responseType: 'arraybuffer'
           }) 
@@ -88,27 +118,7 @@ export function Edit() {
         }
         fetchCategories()
       }, [])
-
-    async function handleEditFood(event) {
-        event.preventDefault()
-        try {
-            const fileUploadForm = new FormData();
-            fileUploadForm.append("img", img);
-            await api.patch(`foods/avatar/${params.id}`, fileUploadForm);
-            await api.put(`/foods/${params.id}`, {
-                title,
-                category_id: selectedCategory,
-                description,
-                ingredients,
-                price: price*100,
-              })
-                alert("food updated!");
-                navigate(-1);
-        } catch(e) {
-            alert(e)
-            console.log(e)
-        }
-        }
+      
     return (
         <Container>
             <Header />
@@ -169,6 +179,7 @@ export function Edit() {
                         <textarea value={description} placeholder="Fale brevemente sobre o prato, seus ingredientes e composição" onChange={e => setDescription(e.target.value)} />
                     </InputWrapper>
                     <ButtonsWrapper>
+                        <button onClick={e => handleDeleteFood(e)}>Excluir prato</button>
                         <button onClick={e => handleEditFood(e)}>Salvar alterações</button>
                     </ButtonsWrapper>
                     </div>

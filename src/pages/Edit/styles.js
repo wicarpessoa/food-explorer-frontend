@@ -3,7 +3,7 @@ export const Container = styled.div`
 display: grid;
 width: 100%;
 height: 100vh;
-grid-template-rows: 114px auto 77px;
+grid-template-rows: 114px 1fr 77px;
   grid-template-columns:auto;
   grid-template-areas:
     "header"
