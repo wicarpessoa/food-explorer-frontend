@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 import { Container, TagsContainer, ButtonsWrapper, Counter } from "./styles";
+import { Tag } from "../../components/Tag/index.js";
 import { TextButton } from "../../components/TextButton";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
-import { Tag } from "../../components/Tag";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
