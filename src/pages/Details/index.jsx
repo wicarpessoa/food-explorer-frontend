@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { Container, TagsContainer, ButtonsWrapper, Counter } from "./styles";
-import { Tag } from "../../components/Tag/index.js";
+import { Tag } from "../../components/Tag";
 import { TextButton } from "../../components/TextButton";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
