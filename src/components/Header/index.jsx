@@ -11,7 +11,7 @@ import {Footer} from '../Footer'
 import {Input} from "../Input"
 import {TextButton} from "../TextButton"
 import { Button } from "../Button";
-export function Header({admin, onInputChange}) {
+export function Header({ onInputChange}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const navigate = useNavigate(); 
