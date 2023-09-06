@@ -1,16 +1,14 @@
 import { Container, Carroussel, Main, Heading, CarrousselContainer } from "./styles";
-
 import { Card } from "../../components/Card/Index";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import HeadingImg from '../../assets/headingImg.png'
+import { Cart } from "../../components/Cart";
 import { useNavigate } from "react-router-dom";
-import { CaretLeft } from "phosphor-react";
+import { CaretLeft} from "phosphor-react";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { useRef } from "react";
-import { useLayoutEffect } from "react";
 import { useAuth } from "../../hooks/auth";
+import HeadingImg from '../../assets/headingImg.png'
 
 export function Home() {
   const navigate = useNavigate();
@@ -20,10 +18,6 @@ export function Home() {
   const {isAdmin} = useAuth();
 
   function handleNavigate(id) {
-    navigate(`/details/${id}`)
-  }
-
-  function handleNavigatoToEdit(id) {
     navigate(`/details/${id}`)
   }
   
@@ -43,15 +37,6 @@ export function Home() {
 
     carroussel.scrollLeft -= 312
   }
-
-  function formatPriceWithTwoDecimals(number) {
-    const formattedPrice = (number/100).toFixed(2);
-    const formattedNumberWithComma = formattedPrice.replace(".", ",");
-    return formattedNumberWithComma;
-}
-
-
- 
 
   useEffect(()=> {
     async function fetchFoods() {
@@ -73,7 +58,7 @@ export function Home() {
             <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
             </div>
           </Heading>
-        { foodsByCategory.map((food, i)=> {
+        {foodsByCategory && foodsByCategory.map((food, i)=> {
           return(
           <CarrousselContainer key={String(i)}>
           <h2>{food.category_name}</h2>
@@ -93,7 +78,6 @@ export function Home() {
          
          <Carroussel className="carrousel" >
             {food.foods.map((food, i) => {
-              const formattedPrice = formatPriceWithTwoDecimals(food.price)
               return (
                 <Card 
                     key={String(i)} 
@@ -101,8 +85,10 @@ export function Home() {
                     onHandleDetails={()=>handleNavigate(food.id)} 
                     description={food.description} 
                     title={food.title} 
-                    price={`R$ ${formattedPrice}`} 
+                    price={food.price} 
                     img_url={food.img_url} 
+                    food_id={food.id}
+                    
                   />
               )
             })}
@@ -112,6 +98,7 @@ export function Home() {
           )
           })
         }
+        <Cart/>
         </Main>
       <Footer/>
     </Container>

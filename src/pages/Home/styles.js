@@ -13,6 +13,7 @@ justify-content: center;
 export const Main = styled.div`
 display: flex;
 flex-direction: column;
+position: relative;
 flex: 1;
 width: 100%;
 overflow-x: auto;
@@ -186,3 +187,4 @@ position: relative;
 padding-left: 0px;
 }
 `
+

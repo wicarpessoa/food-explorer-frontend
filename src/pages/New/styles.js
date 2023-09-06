@@ -72,7 +72,11 @@ export const Form = styled.form`
         gap: 24px;
     }
     
-
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
      @media (min-width: 800px) {
         gap: 32px;
         max-width: 1120px;

@@ -48,6 +48,7 @@ export const Container = styled.div`
     border-radius: 50%;
     width: 88px;
     height: 88px;
+    object-fit: cover;
   }
 
   > button {

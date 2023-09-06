@@ -65,7 +65,11 @@ export const Form = styled.form`
     flex-direction: column;
     gap: 24px;
     width: 100%;
-
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
     > div {
         display: flex;
         flex-direction: column;

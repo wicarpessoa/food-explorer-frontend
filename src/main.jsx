@@ -7,14 +7,17 @@ import  GlobalStyleS  from './styles/global'
 import theme from './styles/theme'
 
 import {Routes} from './routes'
+import { CartProvider } from './hooks/cart'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyleS/>
-    <AuthProvider>
-      <Routes/>
-    </AuthProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Routes/>
+        </CartProvider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )

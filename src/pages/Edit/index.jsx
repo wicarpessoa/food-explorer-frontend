@@ -168,7 +168,7 @@ export function Edit() {
                         </InputWrapper>
                         <InputWrapper>
                             <label >Preço</label>
-                            <Input value={price} dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
+                            <Input type="number" value={price} dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
                         </InputWrapper>
 
                     </div>

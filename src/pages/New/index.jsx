@@ -130,7 +130,7 @@ export function New() {
                         </InputWrapper>
                         <InputWrapper>
                             <label >Preço</label>
-                            <Input dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
+                            <Input type="number" dark={false} placeholder="R$ 00,00" onChange={e => setPrice(e.target.value)} />
                         </InputWrapper>
 
                     </div>

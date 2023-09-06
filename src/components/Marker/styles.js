@@ -25,9 +25,10 @@ export const Container = styled.div`
 
     background-color: transparent;
     border: none;
+
     $:input:focus {
          outline: ${({ isNew,theme }) => isNew ? `1px solid ${theme.COLORS.LIGHT_500}` :"none"};
-    }
+    
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
 

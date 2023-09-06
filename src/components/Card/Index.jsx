@@ -6,13 +6,31 @@ import { Button } from "../Button";
 import { Minus, Plus, Heart, PencilSimple , ForkKnife  } from "phosphor-react";
 
 import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useCart } from "../../hooks/cart";
 
-export function Card({ onHandleDetails, admin=false, description, img_url, title, price }) {
+export function Card({ onHandleDetails, admin=false, description, img_url, title, price, food_id }) {
   const [imgFile, setImgFile] = useState(null)
+  const [quantity, setQuantity] = useState(1)
+
+  const { addCart } = useCart()
+  function handleAddCart() {
+    setQuantity(prevState => (prevState + 1))
+  }
+
+  function handleSubCart() {
+    if (quantity > 1) {
+      setQuantity(prevState => (prevState - 1))
+    }
+  } 
+
+  function formatPriceWithTwoDecimals(number) {
+    const formattedPrice = (number/100).toFixed(2);
+    const formattedNumberWithComma = formattedPrice.replace(".", ",");
+    return formattedNumberWithComma;
+}
+const formattedPrice = formatPriceWithTwoDecimals(price)
 
 
-  
   useEffect(()=> {
     async function fetchImg() {
       if (img_url) {
@@ -36,19 +54,19 @@ export function Card({ onHandleDetails, admin=false, description, img_url, title
       {img_url ? <img src={imgFile} /> : <ForkKnife size={120}/>}
       <TextButton title={`${title} >`} onClick={onHandleDetails} />
       <p>{description}</p>
-      <span>{price}</span>
+      <span>{`R$ ${formattedPrice}`}</span>
       <ButtonsWrapper admin={admin}>
         <Counter>
           <button>
-            <Minus size={18} />
+            <Minus size={18} onClick={handleSubCart} />
           </button>
-          <span>01</span>
+          <span>{quantity}</span>
 
           <button>
-            <Plus size={18} />
+            <Plus size={18} onClick={handleAddCart}/>
           </button>
         </Counter>
-        <Button title="incluir" />
+        <Button title="incluir" onClick={()=>{addCart({quantity, food_id, price})}}/>
       </ButtonsWrapper>
     </Container>
   );
